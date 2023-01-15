@@ -1,10 +1,11 @@
-local m=workspace.__DEBRIS.MonsterDrops
+pcall(function()
+	game.Players.LocalPlayer.PlayerScripts.Scripts.Game['Gun Replication']:Destroy()
+end)
+local m=workspace.__THINGS.Monsters
 function Added(v)
-	if tostring(v)=='UID'then
-		workspace.__THINGS.__REMOTES.redeemdrop:FireServer({{v.Value}})
-	end
+	workspace.__THINGS.__REMOTES.mobdodamage:FireServer({{{v,math.huge}}})
 end
-getgenv().AutoCollectMonsterDrops3=m.DescendantAdded:Connect(Added)
+getgenv().AutoKillMonsters3=m.ChildAdded:Connect(Added)
 for _,v in pairs(m:GetChildren())do
-	Added(v.UID)
+	Added(v)
 end
