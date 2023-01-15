@@ -1,0 +1,10 @@
+local m=workspace.__DEBRIS.MonsterDrops
+function Added(v)
+	if tostring(v)=='UID'then
+		workspace.__THINGS.__REMOTES.redeemdrop:FireServer({{v.Value}})
+	end
+end
+getgenv().AutoCollectMonsterDrops3=m.DescendantAdded:Connect(Added)
+for _,v in pairs(m:GetChildren())do
+	Added(v.UID)
+end
